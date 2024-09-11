@@ -52,10 +52,13 @@ public class SecurityConfig {
 
     @Bean
     AuthorizationManager<RequestAuthorizationContext> customAuthorizationManager() {
+        // configure custom auth manager to be able to check not only the role but also the username
         return (Supplier<Authentication> authentication, RequestAuthorizationContext context) -> {
             Authentication auth = authentication.get();
+            // check roles
             final var isAdminRole = auth.getAuthorities().stream()
                     .anyMatch(grantedAuthority -> grantedAuthority.getAuthority().equals("ROLE_ADMIN"));
+            // check admin username
             final var isAdminUsername = auth.getName().equals("admin");
             return new AuthorizationDecision(isAdminRole || isAdminUsername);
         };
