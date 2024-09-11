@@ -36,15 +36,15 @@ public class SecurityConfig {
         final var manager = new InMemoryUserDetailsManager();
         // create dummy users for testing purpose
         manager.createUser(User.withUsername("admin")
-                .password(bCryptPasswordEncoder().encode("dummypassword"))
-                .roles("USER")
+                .password(bCryptPasswordEncoder.encode("dummypassword"))
+                .roles("NO_ADMIN")
                 .build());
         manager.createUser(User.withUsername("user1")
-                .password(bCryptPasswordEncoder().encode("dummypassword"))
+                .password(bCryptPasswordEncoder.encode("dummypassword"))
                 .roles("ADMIN")
                 .build());
         manager.createUser(User.withUsername("user2")
-                .password(bCryptPasswordEncoder().encode("dummypassword"))
+                .password(bCryptPasswordEncoder.encode("dummypassword"))
                 .roles("NO_ADMIN")
                 .build());
         return manager;
