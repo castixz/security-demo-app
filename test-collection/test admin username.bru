@@ -1,0 +1,16 @@
+meta {
+  name: test admin username
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{baseurl}}/api/v1/admin
+  body: none
+  auth: basic
+}
+
+auth:basic {
+  username: user1
+  password: dummypassword
+}
